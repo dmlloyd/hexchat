@@ -463,7 +463,7 @@ process_numeric (session * sess, int n,
 	session *whois_sess = serv->server_session;
 
 	char *ex;
-	
+
 	/* unless this setting is on */
 	if (prefs.hex_irc_whois_front)
 		whois_sess = serv->front_session;
@@ -703,7 +703,7 @@ process_numeric (session * sess, int n,
 
 #if 0
 	case 338:  /* Undernet Real user@host, Real IP */
-		EMIT_SIGNAL (XP_TE_WHOIS_REALHOST, sess, word[4], word[5], word[6], 
+		EMIT_SIGNAL (XP_TE_WHOIS_REALHOST, sess, word[4], word[5], word[6],
 			(word_eol[7][0]==':') ? word_eol[7]+1 : word_eol[7], 0);
 		break;
 #endif
@@ -982,7 +982,7 @@ process_named_msg (session *sess, char *type, char *word[], char *word_eol[])
 	{
 		guint32 t;
 
-		t = WORDL((guint8)type[0], (guint8)type[1], (guint8)type[2], (guint8)type[3]); 	
+		t = WORDL((guint8)type[0], (guint8)type[1], (guint8)type[2], (guint8)type[3]);
 		/* this should compile to a bunch of: CMP.L, JE ... nice & fast */
 		switch (t)
 		{
@@ -1069,7 +1069,7 @@ process_named_msg (session *sess, char *type, char *word[], char *word_eol[])
 	{
 		guint32 t;
 
-		t = WORDL((guint8)type[0], (guint8)type[1], (guint8)type[2], (guint8)type[3]); 	
+		t = WORDL((guint8)type[0], (guint8)type[1], (guint8)type[2], (guint8)type[3]);
 		/* this should compile to a bunch of: CMP.L, JE ... nice & fast */
 		switch (t)
 		{
@@ -1077,18 +1077,18 @@ process_named_msg (session *sess, char *type, char *word[], char *word_eol[])
 		case WORDL('A','C','C','O'):
 			inbound_account (serv, nick, word[3]);
 			return;
-			
+
 		case WORDL('I','N','V','I'):
 			if (ignore_check (word[1], IG_INVI))
 				return;
-			
+
 			if (word[4][0] == ':')
 				EMIT_SIGNAL (XP_TE_INVITED, sess, word[4] + 1, nick,
 								 serv->servername, NULL, 0);
 			else
 				EMIT_SIGNAL (XP_TE_INVITED, sess, word[4], nick,
 								 serv->servername, NULL, 0);
-				
+
 			return;
 
 		case WORDL('N','O','T','I'):
@@ -1215,7 +1215,7 @@ process_named_msg (session *sess, char *type, char *word[], char *word_eol[])
 					{
 						serv->have_accnotify = TRUE;
 					}
-					
+
 					if (strstr (word_eol[5], "extended-join") != 0)
 					{
 						serv->have_extjoin = TRUE;
